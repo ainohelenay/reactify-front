@@ -56,9 +56,7 @@ class RctAgencyLayout extends Component {
             <div className="app-container">
                <div className="rct-page-wrapper">
                   <div className="rct-app-content">
-                     <div className="app-header">
-                        <Header agencyMenu />
-                     </div>
+                    
                      <div className="rct-page">
                         <AgencyMenu />
                         {this.renderPage()}
@@ -80,3 +78,26 @@ const mapStateToProps = ({ settings }) => {
 }
 
 export default connect(mapStateToProps)(withRouter(RctAgencyLayout));
+/*PREVIOUS VERSION:
+render() {
+      return (
+         <div className={`app-boxed ${this.getActiveLayoutBg()}`} >
+            <div className="app-container">
+               <div className="rct-page-wrapper">
+                  <div className="rct-app-content">
+                     <div className="app-header">
+                        <Header agencyMenu />
+                     </div>
+                     <div className="rct-page">
+                        <AgencyMenu />
+                        {this.renderPage()}
+                     </div>
+                     <ThemeOptions />
+                     <Footer />
+                  </div>
+               </div>
+            </div>
+         </div>
+      );
+   }
+}*/

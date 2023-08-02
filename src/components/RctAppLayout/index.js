@@ -98,7 +98,7 @@ class MainApp extends Component {
 		);
 	}
 
-	// render header
+	/* render header
 	renderHeader() {
 		const { loadingHeader } = this.state;
 		if (loadingHeader) {
@@ -106,7 +106,7 @@ class MainApp extends Component {
 		}
 		return <Header />
 	}
-
+*/
 	//render Sidebar
 	renderSidebar() {
 		const { loadingSidebar } = this.state;
@@ -141,14 +141,13 @@ class MainApp extends Component {
 					>
 						<div className="app-container">
 							<div className="rct-app-content">
-								<div className="app-header">
-									{this.renderHeader()}
-								</div>
+								
 								<div className="rct-page">
 									{this.renderPage()}
 								</div>
 							</div>
 						</div>
+						
 					</Sidebar>
 					<ThemeOptions />
 				</div>
@@ -166,3 +165,39 @@ export default withRouter(connect(mapStateToProps, {
 	collapsedSidebarAction,
 	startUserTour
 })(MainApp));
+
+/*PREVIOUS VERSION:
+
+render() {
+		const { navCollapsed, rtlLayout, miniSidebar } = this.props.settings;
+		const { windowWidth } = this.state;
+		return (
+			<div className="app">
+				<div className="app-main-container">
+					<Tour />
+					<Sidebar
+						sidebar={this.renderSidebar()}
+						open={windowWidth <= 1199 ? navCollapsed : false}
+						docked={windowWidth > 1199 ? !navCollapsed : false}
+						pullRight={rtlLayout}
+						onSetOpen={() => this.props.collapsedSidebarAction(false)}
+						styles={{ content: { overflowY: '' } }}
+						contentClassName={classnames({ 'app-conrainer-wrapper': miniSidebar })}
+					>
+						<div className="app-container">
+							<div className="rct-app-content">
+								<div className="app-header">
+									{this.renderHeader()}
+								</div>
+								<div className="rct-page">
+									{this.renderPage()}
+								</div>
+							</div>
+						</div>
+					</Sidebar>
+					<ThemeOptions />
+				</div>
+			</div>
+		);
+	}
+}*/
