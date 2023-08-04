@@ -47,12 +47,7 @@ function CustomBar(props) {
                      <IconButton className="text-white"><i className="ti-settings"></i></IconButton>
                   </li>
                   <UncontrolledDropdown nav className="list-inline-item vr-super">
-                     <DropdownToggle nav caret className="text-white">
-                        <span className="mr-10">
-                           <img src={require('Assets/img/user-7.jpg')} alt="user profile" className="img-fluid rounded-circle" width="40" height="40" />
-                        </span>
-                        Lucile Beck
-                </DropdownToggle>
+                    
                      <DropdownMenu>
                         <DropdownItem>My Profile</DropdownItem>
                         <DropdownItem>My Contacts</DropdownItem>
@@ -67,3 +62,9 @@ function CustomBar(props) {
 }
 
 export default withStyles(styles)(CustomBar);
+/* <DropdownToggle nav caret className="text-white">
+                        <span className="mr-10">
+                           <img src={require('Assets/img/user-7.jpg')} alt="user profile" className="img-fluid rounded-circle" width="40" height="40" />
+                        </span>
+                        Lucile Beck
+                </DropdownToggle>*/

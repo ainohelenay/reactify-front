@@ -1,12 +1,12 @@
 /**
  * Cultures Calendar
  */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import moment from 'moment';
 
 // events
-import events from './events';
+import EventsList from './events';
 
 // page title bar
 import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
@@ -20,12 +20,40 @@ import RctCollapsibleCard from 'Components/RctCollapsibleCard/RctCollapsibleCard
 const Localizer = momentLocalizer(moment);
 
 class Cultures extends React.Component {
-	state = { culture: 'fr' }
+	state = { 
+		culture: 'en',
+		events: [], 
+	  };
+	
+	  componentDidMount() {
+		this.fetchEventsData(); 
+	  }
+
+	  fetchEventsData = async () => {
+		try {
+		  const response = await fetch('http://localhost:1337/api/events');
+		  console.log('Response Status:', response.status);
+		  console.log('Response Headers:', response.headers);
+		  if (!response.ok) {
+			throw new Error('Network response was not ok');
+		  } else {
+			console.log("okkk")
+		  }
+		  const data = await response.json();
+		  this.setState({ events: data.data }); 
+
+		} catch (error) {
+		  console.error('Error fetching data:', error);
+		  this.setState({ events: [] }); 
+		}
+	  };
 
 	render() {
-		let cultures = ['en', 'en-GB', 'es', 'fr', 'ar-AE']
-		let rtl = this.state.culture === 'ar-AE'
+		const { events, culture } = this.state;
+		let cultures = ['en']
+		let rtl = this.state.culture === 'en'
 
+		console.log("events gives",events);
 		return (
 			<div className="calendar-wrapper">
 				<PageTitleBar title={<IntlMessages id="sidebar.cultures" />} match={this.props.match} />
@@ -46,17 +74,24 @@ class Cultures extends React.Component {
 							))}
 						</select>
 					</h3>
+					<EventsList events={events}></EventsList>
 					<Calendar
 						localizer={Localizer}
 						rtl={rtl}
-						events={events}
+						events={events.map((event) => ({
+							title: event.attributes.Title,
+							start: new Date(event.attributes.Date).toISOString(),
+							end: new Date(event.attributes.Date).toISOString(),
+							}))}
 						culture={this.state.culture}
-						defaultDate={new Date(2015, 3, 12)}
+						defaultDate={new Date(2023, 3, 8)}
+						
 					/>
 				</RctCollapsibleCard>
 			</div>
 		)
 	}
+	
 }
 
-export default Cultures
+export default Cultures;

@@ -514,11 +514,11 @@ export default {
          "new_item": false,
          "menu_icon": "zmdi zmdi-calendar-note",
          "child_routes": [
-            {
+            /*{
                "path": "/horizontal/calendar/basic",
                "new_item": false,
                "menu_title": "components.basic"
-            },
+            },*/
             {
                "path": "/horizontal/calendar/cultures",
                "new_item": false,

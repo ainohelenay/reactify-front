@@ -45,6 +45,7 @@ module.exports = {
 		historyApiFallback: true,
 		quiet: true
 	},
+	devtool: process.env.NODE_ENV === 'production' ? false : 'inline-source-map',
 	// resolve alias (Absolute paths)
 	resolve: {
 		alias: {

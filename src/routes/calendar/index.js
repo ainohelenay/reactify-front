@@ -22,7 +22,7 @@ const CalendarComponents = ({ match }) => (
       <Switch>
          <Redirect exact from={`${match.url}/`} to={`${match.url}/basic`} />
          <Route path={`${match.url}/basic`} component={AsyncBasicCalendarComponent} />
-         <Route path={`${match.url}/cultures`} component={AsyncCulturesComponent} />
+         <Route path={`${match.url}/Cultures`} component={AsyncCulturesComponent} />
          <Route path={`${match.url}/selectable`} component={AsyncSelectableComponent} />
          <Route path={`${match.url}/custom-rendering`} component={AsyncCustomComponent} />
       </Switch>

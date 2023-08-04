@@ -1,90 +1,60 @@
-export default [
-  {
-    'title': 'All Day Event very long title',
-    'allDay': true,
-    'start': new Date(2015, 3, 0),
-    'end': new Date(2015, 3, 1)
-  },
-  {
-    'title': 'Long Event',
-    'start': new Date(2015, 3, 7),
-    'end': new Date(2015, 3, 10)
-  },
+import React from 'react';
 
-  {
-    'title': 'DTS STARTS',
-    'start': new Date(2016, 2, 13, 0, 0, 0),
-    'end': new Date(2016, 2, 20, 0, 0, 0)
-  },
+/*const EventsList = ({ events }) => {
 
-  {
-    'title': 'DTS ENDS',
-    'start': new Date(2016, 10, 6, 0, 0, 0),
-    'end': new Date(2016, 10, 13, 0, 0, 0)
-  },
+  return (
+    <div>
+      {events.map((event) => (
+        <React.Fragment key={event.id}>
+          <div>Title: {event.attributes.Title}</div>
+          <div>Start: {new Date(event.attributes.Date).toString()}</div>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
 
-  {
-    'title': 'Some Event',
-    'start': new Date(2015, 3, 9, 0, 0, 0),
-    'end': new Date(2015, 3, 9, 0, 0, 0)
-  },
-  {
-    'title': 'Conference',
-    'start': new Date(2015, 3, 11),
-    'end': new Date(2015, 3, 13),
-    desc: 'Big conference for important people'
-  },
-  {
-    'title': 'Meeting',
-    'start': new Date(2015, 3, 12, 10, 30, 0, 0),
-    'end': new Date(2015, 3, 12, 12, 30, 0, 0),
-    desc: 'Pre-meeting meeting, to prepare for the meeting'
-  },
-  {
-    'title': 'Lunch',
-    'start': new Date(2015, 3, 12, 12, 0, 0, 0),
-    'end': new Date(2015, 3, 12, 13, 0, 0, 0),
-    desc: 'Power lunch'
-  },
-  {
-    'title': 'Meeting',
-    'start': new Date(2015, 3, 12, 14, 0, 0, 0),
-    'end': new Date(2015, 3, 12, 15, 0, 0, 0)
-  },
-  {
-    'title': 'Happy Hour',
-    'start': new Date(2015, 3, 12, 17, 0, 0, 0),
-    'end': new Date(2015, 3, 12, 17, 30, 0, 0),
-    desc: 'Most important meal of the day'
-  },
-  {
-    'title': 'Dinner',
-    'start': new Date(2015, 3, 12, 20, 0, 0, 0),
-    'end': new Date(2015, 3, 12, 21, 0, 0, 0)
-  },
-  {
-    'title': 'Birthday Party',
-    'start': new Date(2015, 3, 13, 7, 0, 0),
-    'end': new Date(2015, 3, 13, 10, 30, 0)
-  },
-  {
-    'title': 'Birthday Party 2',
-    'start': new Date(2015, 3, 13, 7, 0, 0),
-    'end': new Date(2015, 3, 13, 10, 30, 0)
-  },
-  {
-    'title': 'Birthday Party 3',
-    'start': new Date(2015, 3, 13, 7, 0, 0),
-    'end': new Date(2015, 3, 13, 10, 30, 0)
-  },
-  {
-    'title': 'Late Night Event',
-    'start': new Date(2015, 3, 17, 19, 30, 0),
-    'end': new Date(2015, 3, 18, 2, 0, 0)
-  },
-  {
-    'title': 'Multi-day Event',
-    'start': new Date(2015, 3, 20, 19, 30, 0),
-    'end': new Date(2015, 3, 22, 2, 0, 0)
-  }
-]
+export default EventsList;*/
+
+function convertISOToJSDate(dateString) {
+  const date = new Date(dateString);
+  const year = date.getUTCFullYear();
+  const month = date.getUTCMonth();
+  const day = date.getUTCDate();
+  const hour = date.getUTCHours();
+  const minute = date.getUTCMinutes();
+
+  return `new Date(${year}, ${month}, ${day}, ${hour}, ${minute}, 0)`;
+}
+
+const EventsList = ({ events }) => {
+  const formattedEvents = events.map((event) => {
+    const startDateString = event.attributes.Date;
+    const startTimeString = '00:00:00'; 
+
+    const startDateTimeString = `${startDateString}T${startTimeString}.000Z`;
+    const endDateTimeString = `${startDateString}T${startTimeString}.000Z`;
+
+    const startDateFormatted = convertISOToJSDate(startDateTimeString);
+    const endDateFormatted = convertISOToJSDate(endDateTimeString);
+
+    return {
+      title: event.attributes.Title,
+      start: startDateFormatted,
+      end: endDateFormatted,
+    };
+  });
+
+  console.log("formattedEvents:", formattedEvents);
+
+  return formattedEvents.map((formattedEvent, index) => (
+    <div key={index}>
+      <p>title:{formattedEvent.title}</p>
+      <p>start: {formattedEvent.start.toLocaleString()}</p>
+      <p>end: {formattedEvent.end.toLocaleString()}</p>
+    </div>
+  ));
+};
+
+
+export default EventsList;

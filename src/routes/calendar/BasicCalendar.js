@@ -9,6 +9,9 @@ import moment from "moment";
 // page title bar
 import PageTitleBar from 'Components/PageTitleBar/PageTitleBar';
 
+import EventsList from './events';
+
+
 // intl messages
 import IntlMessages from 'Util/IntlMessages';
 

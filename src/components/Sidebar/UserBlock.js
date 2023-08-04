@@ -74,24 +74,11 @@ class UserBlock extends Component {
 							tag="div"
 							className="d-flex align-items-center"
 						>
-							<div className="user-profile">
-								<img
-									src={require('Assets/avatars/user-15.jpg')}
-									alt="user profile"
-									className="img-fluid rounded-circle"
-									width="50"
-									height="100"
-								/>
-							</div>
-							<div className="user-info">
-								<span className="user-name ml-4">Lucile Beck</span>
-								<i className="zmdi zmdi-chevron-down dropdown-icon mx-4"></i>
-							</div>
+							
 						</DropdownToggle>
 						<DropdownMenu>
 							<ul className="list-unstyled mb-0">
 								<li className="p-15 border-bottom user-profile-top bg-primary rounded-top">
-									<p className="text-white mb-0 fs-14">Lucile Beck</p>
 									<span className="text-white fs-14">info@example.com</span>
 								</li>
 								<li>
@@ -148,3 +135,14 @@ const mapStateToProps = ({ settings }) => {
 export default connect(mapStateToProps, {
 	logoutUserFromFirebase
 })(UserBlock);
+
+/*LINE 76 
+							<div className="user-profile">
+							<img
+								src={require('Assets/avatars/user-15.jpg')}
+								alt="user profile"
+								className="img-fluid rounded-circle"
+								width="50"
+								height="100"
+							/>
+						</div>*/
