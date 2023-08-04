@@ -1,19 +1,15 @@
 // sidebar nav links
 export default {
    category1: [
-      {
-         "menu_title": "sidebar.dashboard",
-         "menu_icon": "zmdi zmdi-view-dashboard",
-         "type_multi": null,
-         "new_item": true,
-         "child_routes": [
+      
+         
             {
-               "menu_title": "sidebar.ecommerce",
+               "menu_title": "Main Page",
                "new_item": false,
                "path": "/app/dashboard/ecommerce"
             },
          ]
-      },/*
+      ,/*
             /*{
                "path": "/dashboard/crm/dashboard",
                "new_item": true,
@@ -473,7 +469,7 @@ export default {
             }
          ]
       }
-  */],
+  */
   category5: [/*
       {
          "menu_title": "sidebar.maps",
@@ -521,34 +517,20 @@ export default {
             }
          ]
       },*/
-      {
-         "menu_title": "sidebar.calendar",
-         "menu_icon": "zmdi zmdi-calendar-note",
-         "type_multi": null,
-         "new_item": false,
-         "child_routes": [
-            {
+         
+            /*{
                "path": "/app/calendar/basic",
                "new_item": false,
                "menu_title": "components.basic"
-            },
+            },*/
             {
                "path": "/app/calendar/cultures",
                "new_item": false,
-               "menu_title": "sidebar.cultures"
+               "menu_title": "Calendar"
             },
-            {
-               "path": "/app/calendar/selectable",
-               "new_item": false,
-               "menu_title": "sidebar.selectable"
-            },
-            {
-               "path": "/app/calendar/custom-rendering",
-               "new_item": false,
-               "menu_title": "sidebar.customRendering"
-            }
+           
          ]
-      },/*
+      /*
       {
          "menu_title": "sidebar.editor",
          "menu_icon": "zmdi zmdi-edit",
@@ -626,5 +608,5 @@ export default {
          "new_item": false,
          "child_routes": null
       }
-   */   ]
+   */   
 }

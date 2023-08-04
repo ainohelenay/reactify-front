@@ -20,8 +20,8 @@ import RctCollapsibleCard from 'Components/RctCollapsibleCard/RctCollapsibleCard
 const Localizer = momentLocalizer(moment);
 
 class Cultures extends React.Component {
+
 	state = { 
-		culture: 'en',
 		events: [], 
 	  };
 	
@@ -48,43 +48,27 @@ class Cultures extends React.Component {
 		}
 	  };
 
+
 	render() {
-		const { events, culture } = this.state;
-		let cultures = ['en']
-		let rtl = this.state.culture === 'en'
+		const { events } = this.state;
 
 		console.log("events gives",events);
 		return (
 			<div className="calendar-wrapper">
 				<PageTitleBar title={<IntlMessages id="sidebar.cultures" />} match={this.props.match} />
 				<RctCollapsibleCard
-					heading="Cultures Calendar"
+					heading="Calendar"
 				>
-					<h3 className="callout mb-30">
-						<label>Select a Culture</label>{' '}
-						<select
-							className="form-control"
-							style={{ width: 200, display: 'inline-block' }}
-							defaultValue={'fr'}
-							onChange={e => this.setState({ culture: e.target.value })} >
-							{cultures.map((c, idx) => (
-								<option key={idx} value={c}>
-									{c}
-								</option>
-							))}
-						</select>
-					</h3>
+					
 					<EventsList events={events}></EventsList>
 					<Calendar
 						localizer={Localizer}
-						rtl={rtl}
 						events={events.map((event) => ({
 							title: event.attributes.Title,
 							start: new Date(event.attributes.Date).toISOString(),
 							end: new Date(event.attributes.Date).toISOString(),
 							}))}
-						culture={this.state.culture}
-						defaultDate={new Date(2023, 3, 8)}
+						defaultDate={new Date(2023, 7, 4, 0, 0, 0)}
 						
 					/>
 				</RctCollapsibleCard>

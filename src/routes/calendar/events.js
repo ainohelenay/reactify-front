@@ -1,21 +1,5 @@
 import React from 'react';
 
-/*const EventsList = ({ events }) => {
-
-  return (
-    <div>
-      {events.map((event) => (
-        <React.Fragment key={event.id}>
-          <div>Title: {event.attributes.Title}</div>
-          <div>Start: {new Date(event.attributes.Date).toString()}</div>
-        </React.Fragment>
-      ))}
-    </div>
-  );
-};
-
-export default EventsList;*/
-
 function convertISOToJSDate(dateString) {
   const date = new Date(dateString);
   const year = date.getUTCFullYear();
@@ -24,7 +8,7 @@ function convertISOToJSDate(dateString) {
   const hour = date.getUTCHours();
   const minute = date.getUTCMinutes();
 
-  return `new Date(${year}, ${month}, ${day}, ${hour}, ${minute}, 0)`;
+  return new Date(year, month, day, hour, minute, 0);
 }
 
 const EventsList = ({ events }) => {
@@ -47,14 +31,7 @@ const EventsList = ({ events }) => {
 
   console.log("formattedEvents:", formattedEvents);
 
-  return formattedEvents.map((formattedEvent, index) => (
-    <div key={index}>
-      <p>title:{formattedEvent.title}</p>
-      <p>start: {formattedEvent.start.toLocaleString()}</p>
-      <p>end: {formattedEvent.end.toLocaleString()}</p>
-    </div>
-  ));
+  return null;
 };
-
 
 export default EventsList;
