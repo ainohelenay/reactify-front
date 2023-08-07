@@ -11,8 +11,7 @@ class UserBlock extends Component {
                 <div className="profile-content">
                     <div className="media">
                         <img src={require('Assets/avatars/user-15.jpg')} alt="user profile" className="rounded-circle mr-30 bordered" width="140" height="140" />
-                       
-                        </div>
+
                     </div>
                 </div>
             </div>

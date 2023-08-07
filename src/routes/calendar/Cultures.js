@@ -2,7 +2,7 @@
  * Cultures Calendar
  */
 import React, { useEffect, useState } from 'react';
-import {Calendar, momentLocalizer} from 'react-big-calendar';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 
 // events
@@ -21,45 +21,47 @@ const Localizer = momentLocalizer(moment);
 
 class Cultures extends React.Component {
 
-	state = { 
-		events: [], 
-	  };
-	
-	  componentDidMount() {
-		this.fetchEventsData(); 
-	  }
+	state = {
+		events: [],
+	};
 
-	  fetchEventsData = async () => {
+	componentDidMount() {
+		this.fetchEventsData();
+	}
+
+	fetchEventsData = async () => {
 		try {
-		  const response = await fetch('http://localhost:1337/api/events');
-		  console.log('Response Status:', response.status);
-		  console.log('Response Headers:', response.headers);
-		  if (!response.ok) {
-			throw new Error('Network response was not ok');
-		  } else {
-			console.log("okkk")
-		  }
-		  const data = await response.json();
-		  this.setState({ events: data.data }); 
+			var api_url_local = 'http://localhost:1337/api/events';
+			var api_url_server = 'https://strapi-cms-kgf-e2d8f9a25e16.herokuapp.com/api/events';
+			const response = await fetch(api_url_local);
+			console.log('Response Status:', response.status);
+			console.log('Response Headers:', response.headers);
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			} else {
+				console.log("okkk")
+			}
+			const data = await response.json();
+			this.setState({ events: data.data });
 
 		} catch (error) {
-		  console.error('Error fetching data:', error);
-		  this.setState({ events: [] }); 
+			console.error('Error fetching data:', error);
+			this.setState({ events: [] });
 		}
-	  };
+	};
 
 
 	render() {
 		const { events } = this.state;
 
-		console.log("events gives",events);
+		console.log("events gives", events);
 		return (
 			<div className="calendar-wrapper">
 				<PageTitleBar title={<IntlMessages id="sidebar.cultures" />} match={this.props.match} />
 				<RctCollapsibleCard
 					heading="Calendar"
 				>
-					
+
 					<EventsList events={events}></EventsList>
 					<Calendar
 						localizer={Localizer}
@@ -67,15 +69,15 @@ class Cultures extends React.Component {
 							title: event.attributes.Title,
 							start: new Date(event.attributes.Date).toISOString(),
 							end: new Date(event.attributes.Date).toISOString(),
-							}))}
+						}))}
 						defaultDate={new Date(2023, 7, 4, 0, 0, 0)}
-						
+
 					/>
 				</RctCollapsibleCard>
 			</div>
 		)
 	}
-	
+
 }
 
 export default Cultures;
